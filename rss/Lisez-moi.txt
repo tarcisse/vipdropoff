@@ -1,0 +1,22 @@
+Le package ici present est constitue hormis le present fichier de :
+
+* read_rss.inc.php	le fichier de la classe read V2.2 de fil_LE
+
+* utils.php		un ensemble de fonction de traitement des chaines de caracteres (encodage, dates)
+
+* doc_rss_read.html	la documentation des fonctions de la classe read
+
+* exemple-0.php		un lecteur test de flux rss (certains flux peuvent ne plus etre valides)
+
+* exemple-1.php		un exemple general d'utilisation de la classe read
+
+* exemple-2.php		un exemple d'utilisation avec mise en cache du fichier obtenu apres traitement pour limiter les requetes vers le flux syndique. exemple-2.php utilise parse_flux-2.php et un dossier "cache" accessible en ecriture doit etre cree au meme niveau que celui_ci.
+
+
+* version.txt		la suite des versions et modifications
+
+* gpl_us.txt		version us de la licence "General Public Licence"
+
+* gpl_fr.txt		version française non officielle de la licence "General Public Licence"
+
+Pour tester les fichiers presents dans ce package vous devez les transferer dans un dossier de votre serveur supportant php (aucune base MySql requise) et creer eventuellement un dossier "cache" au meme niveau que les présents fichiers, ce dossier doit etre accessible en ecriture.

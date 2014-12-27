@@ -1,0 +1,149 @@
+<!doctype html>
+<!--[if IE 7 ]> <html lang="en" class="ie7"> <![endif]-->
+<!--[if IE 8 ]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9 ]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="description" content="{{description}}">
+<meta name="author" content="">
+<link rel="shortcut icon" href="web/images/logo.png">
+<title>{{title}}</title>
+<!-- Bootstrap core CSS -->
+<link href="web/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- HTML5 shiv and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+      <script src="web/js/html5shiv.js"></script>
+      <script src="web/js/respond.min.js"></script>
+    <![endif]-->
+
+<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Yellowtail%7COpen%20Sans%3A400%2C300%2C600%2C700%2C800" media="screen" />
+<!-- Custom styles for this template -->
+<link href="web/css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all">
+<link rel="stylesheet" href="web/css/flexslider.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="web/css/jquery.bxslider.css" type="text/css" media="screen" />
+<link href="web/css/jquery.fancybox.css" rel="stylesheet">
+<link href="web/css/jquery.selectbox.css" rel="stylesheet">
+<link href="web/js/jquery-ui/jquery-ui.css" rel="stylesheet">
+<link href="web/css/style.css" rel="stylesheet">
+<link href="web/css/mobile.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="web/css/settings.css" media="screen" />
+<link href="web/css/animate.min.css" rel="stylesheet">
+<link href="web/css/ts.css" type="text/css" rel="stylesheet">
+
+<script type="text/javascript" src="web/js/jquery.min.js"></script>
+<script src="web/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="web/js/jquery.themepunch.tools.min.js"></script>
+<script type="text/javascript" src="web/js/jquery.themepunch.revolution.min.js"></script>
+<script type="text/javascript" src="web/js/wow.min.js"></script>
+<!--script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key&amp;sensor=false"></script>
+
+<!- Twitter Feed Scripts 
+     Uncomment to activate
+
+<script type="text/javascript" src="js/twitter/jquery.tweet.js"></script>
+<script type="text/javascript" src="js/twitter/twitter_feed.js"></script> -->
+
+</head>
+
+<body>
+<!--Header Start-->
+
+<header  data-spy="affix" data-offset-top="1" class="clearfix">
+    <section class="toolbar">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 left_bar">
+                    <ul class="left-none">
+{% if session.etat is defined %}
+{% if session.etat=='true'%}
+<li><a href="#"><i class="fa fa-user"></i>{{session.user}}</a></li>
+<li><a href="/deconnexion?id={{session.id_session}}"><i class="fa fa-power-off"></i>Déconnexion</a></li>
+{%else%}
+<li><a href="/connexion"><i class="fa fa-user"></i> Connexion</a></li>
+{% endif%}
+{% endif%}
+                        
+                        <a href="?lang=fr"><img src='web/images/fr.png' style='height: 2.5vh'></a>
+                         <a href="?lang=en"><img src='web/images/en.png' style='height: 2.5vh'></a>
+                        <li><i class="fa fa-search"></i>
+                            <input type="search" placeholder="recherche" class="search_box">
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-6 ">
+                    <ul class="right-none pull-right company_info">
+                        <li><a href="tel:18005670123"><i class="fa fa-phone"></i> R&eacute;servez au 06 51 77 98 26</a></li>
+                       <!-- <li class="address"><a href="contact.html"><i class="fa fa-map-marker"></i>  </a></li>-->
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="toolbar_shadow"></div>
+    </section>
+    <div class="bottom-header" >
+        <div class="container">
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="container-fluid"> 
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                   <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                        <a class="navbar-brands" href="/" >
+                            
+                            <span class="logo" style='background-image: url(web/images/logo.png) !important;width: 10vh;height: 10vh'>
+                              <!-- <span class="primary_text">vipdr</span>
+                              <span class="secondary_text">Template</span>-->
+                              <img src='web/images/logo.png'  style='height: 10vh;margin-top: 1vh;'>
+                                </span>
+                                
+                            
+                        </a> </div>
+                        
+                    
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav pull-right">
+                            <li class="active"><a href="/">{%trans%}Accueil{%endtrans%}</a></li>
+                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">{%trans%}Services{%endtrans%}<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">A&eacute;roports<b class="caret"></b></a>
+                                        <ul class="dropdown-menu">
+                                            <li {#class="active"#}><a href="degaulle">Paris-Charles De Gaulle</a></li>
+                                            <li><a href="/orly">Paris-Orly</a></li>
+                                            <li><a href="/beauvais">Beauvais</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">{%trans%}Ev&eacute;nements{%endtrans%}<b class="caret"></b></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="/evenement?type=nightclub">Night Club</a></li>
+                                            <li><a href="/evenement?type=excursion">{%trans%}Excursions{%endtrans%}</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="/affaire">{%trans%}Services aux entreprises{%endtrans%}</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/reservation" >{%trans%}Reservations{%endtrans%}</a> </li>
+                            <li><a href="/avantages">{%trans%}Nos avantages{%endtrans%}</a></li>
+                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">{%trans%}Nous recrutons{%endtrans%}<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/partenariat?type=mettre">{%trans%}Mettre ma voiture &agrave; disposition{%endtrans%}</a></li>
+                                    <li><a href="/partenariat?type=devenir">{%trans%}Devenir partenaire{%endtrans%}</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    <!-- /.navbar-collapse --> 
+                </div>
+                <!-- /.container-fluid --> 
+            </nav>
+        </div>
+        <div class="header_shadow"></div>
+    </div>
+</header>
+<!--Header End-->
+<div class="clearfix"></div>

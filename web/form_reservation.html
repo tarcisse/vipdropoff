@@ -1,0 +1,120 @@
+ <h3 class="margin-bottom-25 margin-top-none" >FORMULAIRE DE RESERVATION</h3>
+    <div id="etapes_reservation" class="">
+            <li>Identit&eacute;</li>|
+            <li>R&eacute;servation</li>|
+            <li>Trajet</li>|
+            <li>Validation</li>
+    </div><br>&nbsp;<br>
+    <div class="form_reserv margin-bottom-20">
+        <fieldset id="reserv_form">
+            
+            <!-- -->
+            <fieldset id='info_identite'>
+                <!--legend>Informations d'identité</legend-->
+                <select id = "type_cli" name="type_cli" class="css-dropdowns " tabindex="1" >
+                    <option value='1'>Particulier</option>
+                    <option value='2' selected>Professionel</option>
+                </select> <br>&nbsp;<br>
+                <select id="civilite" name="civilite" class="css-dropdowns " tabindex="2" >
+                    <option value='1' selected>M.</option>
+                    <option value='2'>Mme</option>
+                </select> <br>&nbsp;<br>
+                <input type="text"   name= "nom"    id="nom"    class="form-control margin-bottom-25" placeholder="NOM  (obligatoire)" value=""/>
+                <input type="text"   name="prenom"  id="prenom" class="form-control margin-bottom-25" placeholder="PRENOM " value=""/>
+                <select id="agee" name="agee" class="css-dropdowns " tabindex="1" >
+                    <option value='0' >Etes-vous une personne &acirc;g&eacute;e ? - NON</option>
+                    <option value='1' >Etes-vous une personne &acirc;g&eacute;e ? - OUI</option>
+                </select> <br>&nbsp;<br>            
+                <input type="text"   name="tmobile" id="tmobile"class="form-control margin-bottom-25" placeholder="TELEPHONE MOBILE (obligatoire)" value=""/>
+                <input type="text"   name="tfixe"   id="tfixe"  class="form-control margin-bottom-25" placeholder="TELEPHONE FIXE " value="" />
+                <!--input type="text"   name="faxe"    id="faxe"   class="form-control margin-bottom-25" placeholder="FAXE " value="" / -->
+                <input type="email"  name="email"   id="email"  class="form-control margin-bottom-25" placeholder="MAIL (obligatoire)" value=""/>
+                <input type="text"   name="societe" id="societe"class="form-control margin-bottom-25" placeholder="SOCIETE (obligatoire si le client est un professionel)" value=""/>
+                <input type="text"   name="adresse" id="adresse"class="form-control margin-bottom-25" placeholder="ADRESSE (obligatoire)" value=""/>
+                <input type="hidden" id="to" name="to" value={{to}}>
+                <!-- Boutons Précédent1 et Suivant1-->
+                <div class="prec-suiv">
+                  <center><!--img id="precedent1"  src="/web/images/precedent.jpg" style="cursor:pointer;" --><img id ="suivant1" src="/web/images/suivant.jpg" style="cursor:pointer;"></center>
+                </div>                          
+            </fieldset>
+            
+            
+            <fieldset id='info_reserv'>
+                <!--legend>Informations de réservation</legend-->
+                 <select id ="service" name="service" class="css-dropdowns " tabindex="3" >
+                    <option value='1' {% if (to=='degaulle') or (to=='orly') or (to=='beauvais') %}selected{%endif%} >Navette aeroportuaire</option>
+                    <option value='2' {% if (to=='nightclub') %} selected {%endif%} > Night Club                   </option>
+                    <option value='3' {% if (to=='excursion') %} selected {%endif%} > Excursion                    </option>                    
+                    <option value='4' {% if (to=='agee')      %} selected {%endif%} > Personne &acirc;g&eacute;e   </option>
+                    <option value='5' {% if (to=='dispos_t')  %} selected {%endif%} > Mise à disposition totale    </option>
+                    <option value='6' {% if (to=='dispos_p')  %} selected {%endif%} > Mise à disposition partielle </option>
+                    <option value='7' {% if (to=='affaire')   %} selected {%endif%} > Affaire                      </option>                    
+                    <option value='8' {% if (to=='autre')     %} selected {%endif%} > Autre                        </option>                    
+                 </select> <br>&nbsp;<br>
+                 <select id="chvdo" name="chvdo" class="css-dropdowns " tabindex="1" >
+                    <option value='0' >Sans Chauffeur VDO</option>
+                    <option value='1' selected>Avec Chauffeur VDO</option>
+                 </select> <br>&nbsp;<br>
+
+                 <input type="text"    name="nbpersonne" id="nbpersonne" class="form-control margin-bottom-25" placeholder="NOMBRE DE PERSONNES " value="2"/>  
+                 <textarea name="commentaire" id="commentaire" class="form-control margin-bottom-25 contact_textarea" placeholder="COMPLEMENT D'INFORMATIONS" rows="3"></textarea>
+                 
+                 <!-- Boutons Précédent2 et Suivant2-->
+                <div class="prec-suiv">
+                  <center><img id="precedent2"  src="/web/images/precedent.jpg" style="cursor:pointer;"><img id ="suivant2" src="/web/images/suivant.jpg" style="cursor:pointer;"></center>
+                </div>
+
+            </fieldset>
+            <fieldset id='info_trajet' style="z-index:9999;">
+                <p><img id="trj" src="/web/images/tr.jpg"></p>
+                <select id="aller_retour" name="aller_retour" class="css-dropdowns " tabindex="1" >
+                    <option value='0' >Aller simple</option>
+                    <option value='1' selected>Aller-retour</option>
+                </select> <br>&nbsp;<br>
+                <input type="text"  name= "depart"      id="depart"      class="form-control margin-bottom-25" placeholder="depart  (obligatoire)"       value=""/>
+                <input type="text"  name= "arrivee"     id="arrivee"     class="form-control margin-bottom-25" placeholder="arrivee  (obligatoire)"    
+                 {% if (to=='degaulle') %}  value="Aéroport Charles-de-Gaulle, Roissy-en-France, France" 
+                 {% elseif (to=='orly') %}      value="Aéroport D'Orly, Orly, France"   
+                 {% else  %}  value="Route de l'aéroport, 60000 Tillé" {% endif %}             />
+                <input type="text"  name="date_trajet"  id="date_trajet" class="form-control margin-bottom-25" placeholder="DATEET HEURE DU TRAJET (obligatoire)" value=""/>
+
+                 <!-- Boutons Précédent3 et Suivant3-->
+                <div class="prec-suiv">
+                  <center><img id="precedent3"  src="/web/images/precedent.jpg" style="cursor:pointer;"><img id ="suivant3" src="/web/images/suivant.jpg" style="cursor:pointer;"></center>
+                </div>
+
+            </fieldset>
+            <fieldset id='validation'>
+             {% if session.etat is defined %}  
+               {% if session.etat == 'false' %}
+               <div id="al" class= "alert alert-info"> 
+                 <strong>Félicitations!</strong> Vous avez presque accompli votre réservation :)<br> Cependant, il semble que vous utilisez nos services pour la premère fois. Nous vous remercions de bien vouloir saisir votre mot de passe afin de vous faciliter la saisie pour une prochaine opération juste après vous être connecté. 
+               </div>
+                   <input type="password" name="passwd"      id="passwd"      class="form-control margin-bottom-25" placeholder="VOTRE MOT DE PASSE ICI"  value=""      />
+                   <input type="password" name="passwd_conf" id="passwd_conf" class="form-control margin-bottom-25" placeholder="CONFIRMATION DE VOTRE MOT DE PASSE "  value=""/> 
+               {% else %}  
+               <div class= "alert alert-info"> 
+                 <strong>Félicitations!</strong> Vous avez accompli avec succès votre réservation.<br> Il ne vous reste plus qu'à cliquer sur le bouton ci-dessous pour valider.
+               </div>
+               {% endif %}
+              {% endif %}
+            </fieldset>
+             <input id="bt_reserv" type="submit" value="VALIDEZ" style='margin-top: 25px;'>
+             <div id="result"></div>
+             <!-- Boutons Précédent3 et Suivant3-->
+                <div class="prec-suiv">
+                  <center><img id="precedent4"  src="/web/images/precedent.jpg" style="cursor:pointer;"><!--img id ="suivant4" src="/web/images/suivant.jpg" style="cursor:pointer;" --></center>
+                </div>
+
+               <div id = "remail" class="alert alert-block alert-info fade in">
+                  <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>×</button>
+                  <h4>Vous n'avez pas reçu de mail ?</h4>
+                  <p>Inutile de vous alarmer ! Vip-dropoff est là pour vous :) <br>
+                     Cliquez simplement sur le bouton ci-dessous et nous vous le renverrons le plus rapidement possible.
+                  </p>
+                  <p>
+                     <button id ='resend_mail' class='btn btn-primary' >Renvoyez-moi le mail</button> 
+                  </p>
+               </div> 
+        </fieldset>
+    </div>

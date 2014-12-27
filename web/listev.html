@@ -1,0 +1,91 @@
+
+
+ <div id="myTabContent" class="tab-content">
+                <div class="tab-pane fade active in" id="full-width">
+                    <div class="content-wrap">
+                        <div class="row car_listings">
+                         
+                         {% for voiture in voiture %}
+                            <div class="inventory margin-bottom-20 clearfix scroll_effect fadeIn">
+                                <input type="checkbox" name="a" class="checkbox compare_vehicle input-checkbox" id="vehicle_1" />
+                                <label for="vehicle_1"></label>
+                                <a class="inventory" >
+                                <div class="title">{{voiture.MARQUE}}</div>
+                                <img src="web/images/voiture/{{voiture.ID_VOITURE}}.jpg" class="preview" alt="preview">
+                                <table class="options-primary">
+                                   
+                                   <tr>
+                                        <td class="option primary">Id_vip:</td>
+                                        <td class="spec">vp00{{voiture.MARQUE}}/dropoff</td>
+                                    </tr>
+                                   
+                                    <tr>
+                                        <td class="option primary">Matricule:</td>
+                                        <td class="spec">{{voiture.MATRICULE}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="option primary">Nombre de place: </td>
+                                        <td class="spec"> {{voiture.NBPLACE}}</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class="option primary">Climatisation:</td>
+                                        <td class="spec">{%if voiture.CLIMATISATION==0 %} non{% else %}oui{%endif%}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="option primary">Musique:</td>
+                                        <td class="spec">{%if voiture.MUSIC==0 %} non{% else %}oui{%endif%}</td>
+                                    </tr>
+                                </table>
+                               <!-- 
+                                <table class="options-secondary">
+                                    <tr>
+                                        <td class="option secondary">Exterior Color:</td>
+                                        <td class="spec">Dark Blue Metallic</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="option secondary">Interior Color:</td>
+                                        <td class="spec">Black / Titanium Blue</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="option secondary">MPG:</td>
+                                        <td class="spec">15 city / 21 hwy</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="option secondary">Stock Number:</td>
+                                        <td class="spec">590497</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="option secondary">VIN Number:</td>
+                                        <td class="spec">WP1AD29P09LA65818</td>
+                                    </tr>
+                                </table>
+                              
+                              -->
+                                <!--<img src="web/images/logo.png" alt="carfax" class="carfax" />-->
+                                <div class="price"><b>Votre revenu</b><br>
+                                    <div class="figure">0 euros<br>
+                                    </div>
+                                    <!--<div class="tax">Plus Sales Tax</div>-->
+                                </div>
+                                <div class="view-details gradient_button supvoit" id='vtc{{voiture.ID_VOITURE}}' data-idvoiture='{{voiture.ID_VOITURE}}' style='cursor: pointer'>
+                                    <i class='fa fa-plus-circle'></i> retirer la voiture </div>
+                                <div class="clearfix"></div>
+                                </a>
+                               <!-- <div class="view-video gradient_button" data-youtube-id="3oh7PBc33dk"><i class="fa fa-video-camera"></i> View Video</div>-->
+                            </div>
+                         
+                         
+                         
+                         
+                             
+                             {% endfor %}
+                               </div>
+                    </div>
+                        <div class="clearfix"></div>
+                </div>
+                  </div>
+        </div>
+      
+      
+      

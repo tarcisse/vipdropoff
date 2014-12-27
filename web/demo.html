@@ -1,0 +1,201 @@
+<style>
+    .titre-corps
+    {
+        font-family: sans-serif;
+        font-size: 11px;
+        padding: 3px;
+        margin: 2px;
+        text-align: left;
+    }
+    .regle a
+    {
+    color: green;
+    font-size:10px;
+    }
+    .depo-annonce
+    {
+        padding: 3px;
+    }
+    #sous_categorie 
+    {
+        width: 100%;
+    margin:15px 0px 15px 0px;
+   
+    }
+    .scat
+    {
+        display: none;
+    }
+    fieldset
+    {
+        background: #aad5f0;
+        padding-top: 10px;
+        margin: 0px 10px 10px 10px;
+        padding: 10px;
+        padding-bottom: 
+        
+    }
+    .scateg
+    {
+        display: none;
+    }
+    #etape
+    {
+        width: 100%;
+        background: #fff;
+        font-size: 11px;
+      
+        /*padding: 5px 0px 5px 0px;*/
+    
+        
+    
+    }
+    .etape
+    {
+        cursor: pointer;
+        display: inline-block;
+        width: 15%;
+        height: 20px;
+        padding-top: 5px
+    }
+    .etape:hover
+    {
+        border-top:  groove;
+        border-width: 1px;
+        border-color: red;        
+       
+    }
+    #desc-cat
+    {
+        width: 100%;
+        resize:none;
+        height: 200px;
+    }
+    #etape1
+    {
+background:   #aad5f0;       
+    }
+    .detape
+    {
+        display: none;
+    }
+    .detape input[type='text']
+    {
+        width: 100%;
+        height: 30px;
+        margin-bottom: 5px;
+    }
+    placeholder
+    {
+        text-align: center;
+        color: #2d9cc4;
+    }
+    /*******************************************************/
+    #detape4 .fich_cach
+    {
+	position: absolute;
+	top: -999px;
+    }
+    #detape4 .fich_img
+    {
+	cursor: pointer;
+	margin: auto;
+    }
+    #detape4 iframe
+    {
+	height: 150px;
+	width: 150px;
+        /*background: yellow;*/
+	
+    }
+   
+   #detape4 .file_suppor
+    {
+	display: block;
+    }
+    /*********************************************************/
+    #suplement iframe
+    {
+        width: 620px;
+        height: 500px;
+        overflow: hidden;
+    }
+    .suplement
+    {
+        display: none;
+    }
+    .indication
+    {
+        font-size: 10px;
+        font-family: sans-serif;
+    }
+    #sup-vid
+    {
+        display: none;
+    }
+    #img5
+    {
+      width: 4vh;
+    }
+</style>
+<div class="clearfix"></div>
+<section id="secondary-banner" class="dynamic-image-1"><!--for other images just change the class name of this section block like, class="dynamic-image-2" and add css for the changed class-->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-8 col-sm-6 col-xs-12">
+                <h2>Espace de gestion</h2>
+                <h4>Mettre sa voiture a disposition</h4>
+            </div>
+            <div class="col-lg-6 col-md-4 col-sm-6 col-xs-12">
+                <ul class="breadcrumb">
+                    <li><a href="/">Accueil</a></li>
+                    <li>gestion</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<!--#secondary-banner ends-->
+<div class="message-shadow"></div>
+<div class="clearfix"></div>
+<section class="content">
+    <div class="container">
+        <div class="inner-page row">
+            <div class="listing-view margin-bottom-20 col-sm-12">
+                <div class="row">
+                    <div class="col-lg-8 col-md-6 col-sm-6 col-xs-12 padding-none"> <span class="ribbon"><strong>vous avez  :</strong></span> <span class="ribbon-item">0 Vehicles </span> </div>
+                </div>
+            </div>
+            
+            <div class="clearfix"></div>
+            <form method="post" action="#" class="listing_sort">
+      
+    
+                <div class="select-wrapper pagination clearfix">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 col-lg-offset-1">
+                          </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pull-right">
+                            <ul class="form-links top_buttons">
+                                <li><a href="?action=course" class="gradient_button">Mes courses</a></li>
+                                <li><a href="?action=ajouter" class="gradient_button">Ajouter une voiture</a></li>
+                                 <li><a href="/espace" class="gradient_button">Mes voitures</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </form>
+           
+           
+            <div class="clearfix"></div>
+           
+           {% include 'web/'~action~'.html'%}
+    </div>
+    <!--container ends--> 
+</section>
+<!--content ends-->
+<div class="clearfix"></div>
+<div id="youtube_video">
+  ghhhh  <iframe width="560" height="315" src="#" allowfullscreen style="width: 560px; height: 315px; border: 0;"></iframe>
+</div>
+

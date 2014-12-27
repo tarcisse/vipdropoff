@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Documentation de rss_read v2.2</title>
+</head>
+
+	<body bgcolor="white" text="#000000">
+	<p><a href="index.html">&lt; Accueil</a></p>
+		<h2>Documentation rss_read v2.2</h2>
+		<h3>Description :</h3>
+		<b>Fil_LE</b>, est un ensemble de classes de fonctions php permettant de Lire et d'écrire des fils rss. Rss_read est la classe de fil_LE permettant de lire le contenu des fichiers RDF/RSS/Atom des autres sites afin de l'afficher sur le votre et ceci de manière très simple.		
+		<p>La classe read permet depuis la version 2 de lire tous les types de fils (rss 0.91, 1.0, 2.0 et atom 0.3 et 1.0) et de conna&icirc;tre leur format d'encodage pour adapter le traitement des donn&eacute;es à celui-ci.</p>
+		<p><b>Nouveautés :</b><br />
+			Pour la version 2.2, les données "enclosure" sont récupérées en natif.<br />
+			Pour la mise au point il est posible de récupérer une indication sur le type d'erreur.</p>
+		<p>PHP 4 est recommandé, les fonctions fopen et fsockopen doivent être autorisée par votre hébergeur ou la bibliothèque curl doit être active. Procédez a besoin à un phpinfo() pour vérification.</p>
+		<h3>Principes généraux :</h3>
+		<p>Quel que soit le type de fil, les données contenues sont accessibles via des tableaux associatifs. Pour faciliter le traitement de différents types de flux, ces tableaux associatifs ont la même structure correspondant aux éléments minimum définissant un fil valide. (exemple "content" sera transformé en "description" dans tous les cas, de même "entry" en "item", "feed" en "channel", d'une manière générale pour les éléments "de base" les noms retenus sont ceux équivalent dans les flux au format 1.0). Mais tout élément supplémentaire sera lui aussi automatiquement collecté dans le tableau associatif sous le nom du tag correspondant. (voir plus bas pour plus d'explications). <b>Il est donc possible de parser tout fichier de type rss (y compris les fichiers de podcast).</b></p>
+		<p>Depuis la version 2.1c ceci peut être "débrayé" si on choisi un mode d'analyse "brut", le mode par défaut étant le mode "agrégé" décrit ci-dessus. ce mode brut est particulièrement utile en phase de mise au point.</p>
+		<p>Remarque : tous les éléments du tableau associatif sont transmis en minuscules même si le tag correspondant dans le flux comporte des majuscules (le contenu de &lt;webMaster&gt; sera $array['webmaster'] ou pour &lt;pubDate&gt; la donnée sera dans $array['pubdate']).</p>
+		<h3>Exemples :</h3>
+		Plusieurs exemples d'utilisations sont donnés à titre non exhaustif, le code html produit pouvant s&ucirc;rement être amélioré. Ils sont fournis en l'état à des fins de vulgarisation et d'aide.<br />- "exemple-1.php" indique une possibilité d'utilisation des fonctions de la classe read ainsi que quelques fonctions utiles dans la mise en forme des données.	<br />
+		- "exemple-2.php" utilise un cache pour ne pas avoir à relancer tout la requète vers le fil distant ainsi que son analyse à chaque demande.<br />- "exemple-3.php" est une généralisation sous forme de fonction de l'exemple précédent pour affichage de plusieurs flux sur la même page avec gestion de cache différenciée.<br />
+		- "exemple-4.php" un exemple de mise en page avec utilisation d'un javascript et de style pour "déplier" les descriptions des items. (avec mise en cache).
+		<h3>Méthodes :</h3>
+		<b>$rss = new rss_read();</b><br />
+		Constructeur de la classe.
+
+		<p><b>$rss -&gt; to_replace_with($array_char_to_replace, $array_char_replace_with);<br />
+			</b>Cette fonction est implémentée de façon à pouvoir remplacer certains caractères présents dans le flux par d'autres caractères, les premiers pouvant provoquer des parasites dans l'affichage (exemple le guillemet de certains flux remplacé par un point d'interrogation dans les données retournées après analyse).<br />
+			$array_char_to_replace = tableau de caractères à remplacer {ex array('&#8217;','&bull;')}<br />
+			$array_char_replace_with = tableau de caractères de remplacement {ex : array("'",'-')}.</p>
+		<p>IMPORTANT : cette fonction doit être invoquée avant toute autre et en particulier avant parsefile pour que le remplacement des caractères ait lieu avant l'analyse du flux.</p>
+		<p><b>$rss -&gt; mode_brut();</b><br />
+			Cette fonction permet d'activer le mode brut d'analyse des flux. Les données de même type ne sont alors pas agrégées come c'est le cas par défaut. (par exemple dc:date, issued, pubDate,... ne sont pas tous rapportés dans "pubdate" mais sont conservés tel quels). Pour activer le  mode d'analyse brut il suffit d'appeler $rss -&gt; mode_brut() <b>avant parsefile().</b></p>
+		<p><b>$bool = $rss -&gt; parsefile($filename, [$maxitem]);</b><br />
+			Parse un fichier RSS <b>$filename </b>en limitant le nombre d'items à <b>$maxitem</b>.<br />
+			Si <b>$maxitem</b> est omis, tous les items seront retournés.<br />
+			Renvoi true si le fichier a été parsé et false sinon.<br />
+			Cette méthode doit être appelée au préalable à toute récupération de données.<br />
+			Le contenu est alors accessible via des fonctions ci-dessous.</p>
+		<p><b>$bool = $rss -&gt; curl_parsefile($filename, [$maxitem]);</b><br />
+			Identique à la fonction parsefile(), mais la lecture du flux distant se fait au moyen de la bibliothèque CURL. Suivant le paramètrage de l'hébergement (fsockopen et fopen desactivés et CURL installé) vous pourrez alors utiliser cette fonction.<br />
+			Les paramètres et le fonctionnement sont identiques à parsefile().</p>
+		<p><b>$erreur = $rss -&gt; retour_erreur();</b><br />
+			Cette fonction retourne une cha&icirc;ne vide ou une description de l'erreur rencontrée (echec de fopen par exemple).<br />
+			Elle s'utilise après parsefile par exemple :</p>
+		<p>$res = $rss -&gt; parsefile($flux);<br />
+			//ou $res = $rss -&gt; curl_parsefile($flux);<br />
+			<br />
+			if ($res === false) {<br />
+				echo $rss -&gt; retour_erreur();<br />
+				exit;<br />
+			}<br />
+		</p>
+		<p><b>$string = $rss -&gt; get_encoding();</b><br />
+			Retourne dans $tring l'encodage du fil (en général "iso-8859-1" ou "utf-8").<br />
+			Dans le cas d'un encodage utf-8, on pourra utiliser la fonction php utf8_decode {string utf8_decode (string data)} pour convertir les données utf-8 en iso-8859-1. (voir le fichier exemple_lire.php pour plus de précision).<br />Par défaut si l'encodage n'est pas défini dans la l'entête xml &lt;?xml version="1" encoding="xxxx"?&gt;, la chaine retournée est vide.<br />
+			La chaine retournée est <u>toujours en minuscules</u> quelle que soit sa case dans le fichier source.</p>
+		<p><b>$string = $rss -&gt; get_last_modified( $filename, [$format]);</b><br />
+			Cette fonction permet de connaître la date de la dernière modification du flux sur le site distant. (en-tête "Last-Modified" si présente dans les informations retournées par le serveur). Particulièrement utile lorsque le flux est mis en cache local afin d'éviter de refaire la lecture et l'analyse l'analyse de cleui-ci à chaque requète sur la page locale sensée l'afficher.<br />
+			$filename = url du flux distant,<br />
+			$format (optionnel). si $format est omis ou "true" (par défaut), la date sera rerournée sous forme du nombre de secondes depuis l'origine unix, sinon la date sera transmise telle que détectée. (de la forme "Sat, 16 Jul 2005 20:15:01 GMT").<br />
+			Si la date n'est pas présente dans les informations transmises la donnée retournée sera soit une cha&icirc;ne vide (si $format est false) soit 0 (option par défaut).<br />
+			La fonction retourne "false" en cas de problème de lecture du fichier distant.</p>
+		<p><b>$bool = $rss -&gt; curl_get_last_modified( $filename, [$format]);</b><br />
+			Identique à la fonction get_last_modified(), mais la lecture du flux distant se fait au moyen de la bibliothèque CURL. Suivant le paramètrage de l'hébergement (fsockopen et fopen desactivés et CURL installé) vous pourrez alors utiliser cette fonction.<br />
+			Les paramètres et le fonctionnement sont identiques à gest_last_modified().</p>
+		<p><b>$bool = $rss -&gt; exist_channel();</b><br />
+			Renvoi true ou false si l'élément channel (feed) existe ou pas.<br />
+			Un channel (feed) est valide si les éléments "title", "link" et "description" sont eux-même définis.</p>
+		<p><b>$array = $rss -&gt; get_channel();</b><br />
+			Renvoi dans <b>$array</b> les sous-éléments de l'élément channel.<br />
+			$array est un tableau associatif structuré de la manière suivante :<br />
+		</p>
+		<p>array(<br />
+				title, // sous-élément title<br />
+				link, // sous-élément link<br />description, // sous-élément description (ou content ou summary)<br />
+				[language, // sous-élément language si existe]<br />
+				[copyright, // sous-élément copyright si existe]<br />
+				[webmaster // sous-élément webMaster si existe]<br />
+				[pubdate // sous-élément pubdate si existe]<br />
+				[modified // sous-élément modified si existe]<br />
+				
+				
+				[xxxxx // sous élément xxxxx si existe]<br />
+				);
+		</p>
+		<p><b>$bool = $rss -&gt; exist_image();</b><br />
+			Renvoi true ou false si l'élément image existe ou pas.<br />
+			Une image est valide si les éléments "title", "link" et "url" sont eux-même définis.</p>
+		<p><b>$array = $rss -&gt; get_image();</b><br />
+			Renvoi dans <b>$array</b> les sous-éléments de l'élément image si il existe.<br />
+			$array est un tableau associatif strcuturé de la manière suivante :</p>
+		<p>array(<br />
+				title, // sous-élément title<br />
+				url, // sous-élément url<br />
+				link, // sous-élément link<br />[width, // sous-élément width si présent]<br />[height, // sous-élément height si présent]<br />
+				[description // sous-élément description (ou content ou summary) si présent]<br />
+				[xxxxx // sous-élément xxxxx si existe]<br />
+		)</p>
+		<p><b>$bool = $rss -&gt; exist_items();</b><br />
+			Renvoi true ou false si au moins 1 élément item (entry) existe ou pas.</p>
+		<p><b>$value = $rss -&gt; get_num_items();<br />
+			</b>Renvoi dans <b>$value</b> le nombre d'items du channel.</p>
+		<p><b>$array = $rss -&gt; get_items();<br />
+			</b>Renvoi dans le tableau <b>$array</b> la liste des sous-éléments des items (ou entry) indexée à partir de 0.<br />
+		</p>
+		<p>$array est un tableau associatif à deux dimensions $array[n]['sous_element']<br />
+			n étant le rang de l'item (à partir de 0)<br />
+			sous_element étant :<br />
+			title, // sous-élément title<br />
+			link, // sous-élément link<br />
+			description, // sous-élément description (ou dc:description ou summary ou content ou content:encoded suivant le type de fil)<br />
+			[author, // sous-élément author (ou dc:creator) si existe]<br />[pubdate // sous-élément pubDate (ou date, dc:date, published, issued suivant le type de fil) si existe]<br />
+			[modified // sous-élément modified (ou updated suivant le type de fil) si existe]<br />
+			[category // sous-élément category (ou dc:subject suivant le fil) si existe]<br />
+			[copyright // sous-élément copyright (ou dc:creator) si existe]<br />
+			[enclosure // sous élémet enclosure si existe retourné sous forme d'un tableau avec les clés 'url', 'lenght' et 'type']<br />
+			[xxxxx // sous-élément xxxxx si existe]
+		</p>
+		<p><b>$bool = $rss -&gt; exist_textinput();</b><br />
+			Renvoi true ou false si l'élément textinput existe ou pas.<br />
+			Tous les éléments title, description, name, link doivent être définis.</p>
+		<p><b>$array = $rss -&gt; get_textinput();</b><br />
+			Renvoi dans <b>$array</b> les sous-éléments de l'élément textinput si il existe.<br />
+		</p>
+		<p>$array est un tableau associatif :<br />
+				array(<br />
+				title, // sous-élément title<br />description, // sous-élément description (ou content ou summary)<br />
+				name, // sous-élément name<br />
+				link // sous-élément link<br />
+				)
+		</p>
+		<h3>Auteurs :</h3>
+		Dominique WOJYLAC<br />
+		avec l'aide et les remarques d'Alain SICHEL
+	</body>
+</html>
+

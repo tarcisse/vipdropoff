@@ -1,0 +1,35 @@
+// Versions de rss_read 
+// -------------------
+- V2.2 décembre 2008
+Il est possible de récupérer les données de la balise enclosure.
+Un retour d'erreurs permet la détection de celles-ci pour la mise au point.
+Correction et remaniement des fichiers d'exemples
+Paasge de tous les fichiers en utf-8
+
+- V2.1c octobre 2006
+Corrections mineures et ajout d'un mode de lecture des fils (mode agrégé ou brut). Ajout de fichiers d'exemples dans l'archive.
+
+- V2.1b septembre 2005
+Différenciation entre les balises date de publication (pubdate, dc:date, published..) et les balises de modification (modified, updated) et donc ajout d'un champ type pour les items.
+Modification du critére de reconnaissance des images (il suffit que l'url soit définie).
+
+- V2.1a août 2005
+ajout de la reconnaissance de content:encoded comme balise équivalente à description.
+
+- V2.1 class read août 2005
+Correction sur la fonction get_encoding (l'encodage n'était pas détecté pour certains fils).
+Ajout de la fonction get_last_modified() permettant d'obtenir la date de dernière modification du fil distant (sous réserve qu'elle soit retournée par le serveur). Fonction utile pour la mise en cache et la détection du moment où regénérer le cache local.
+Le support de la bibliothèque CURL a également été ajouté avec les fonctions curl_parsefile() et curl_get_last_modified() équivalentes respectivement à parsefile() et get_last_modified().
+
+- V2.0 class read juillet 2005
+Les diverses classes font l'objet de packages séparés (pour des raisons de mises à jour).
+La classe read V2.0 complétement revue et réecrite lit désormais tous les types de fils RSS 0.91 ‡ 2 et atom 0.3 existants ‡ ce jour.
+La compatibilité ascendante ‡ été conservée avec les versions précédentes hormis le fait que tous les noms de champs des tableaux associatifs retournés sont en minuscules.
+Introduction d'une fonction permettant de déterminer le type d'encodage (get_encoding) et d'une seconde permettant des remplacements de caractères sur les données sources avant traitement (to_replace_with).
+
+- V1.1 mai 2005
+Modification de la classe rss_read. La lecture des éléments contenant des balises du type
+<balise><![CDATA[ ...... .... ]]></balise> est désormais possible.
+
+- V1.0 avril 2005
+La version 1.0 de fil_LE est en fait la suite de plusieurs révisions de la classe easyRSS produite par Philippe RODIER, modifiée par Alain SICHEL <http://www.cyes.info> et moi-mÍme Dominique WOJYLAC <http://wojylac.free.fr>.

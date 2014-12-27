@@ -1,0 +1,229 @@
+<style>
+    #page{
+        width: 700px;
+        height: 100vh;
+        margin: auto;
+    }
+    .ligne
+    {
+        width: 700px;
+        height: 10vh;
+
+        display: block;
+    }
+    .colone
+    {
+        width: 350px;
+        height: 20px;
+        background: blue;
+    }
+    .colone2
+    {
+        width: 350px;
+        height: 60px;
+    }
+    img
+    {
+        height: 2px;
+    }
+    .ligne3
+    {
+        width: 700px;
+    }
+    .colone3
+    {
+        width: 350px;
+        height: 20px;
+        background: #edebeb;
+    }
+</style>
+
+<page>
+    <div id='page'>
+      
+      <table>
+   <tr class='ligne'>
+       <td class='colone2' ><img src='web/images/logo4.png' height='2px' ><br>VIP DROP-OFF</td>
+       <td class='colone2' style='text-align:right'>{{date}}</td>
+   </tr>
+      </table>
+<!------------debut-espace----------------------------------------->     
+      <table >
+      <tr>
+        <td style='height: 50px;width: 700px'>  
+        </td>
+      </tr>
+      </table>
+<!------------fin-espace----------------------------------------->       
+       <table>
+   <tr class='ligne' >
+     <td style='width: 700px;text-align: center;font-size: 20px;margin-top: 40px'> FICHE DE RESERVATION REF: VIP/{{id_reservation}}/2014</td>
+   </tr>
+      </table>
+       
+       
+
+       <!------------debut-espace----------------------------------------->     
+      <table >
+      <tr>
+        <td style='height: 50px;width: 700px'>  
+        </td>
+      </tr>
+      </table>
+<!------------fin-espace----------------------------------------->       
+ 
+       
+      <div style=''>
+      <table>
+        
+        <tr  class='ligne3'>
+            <td class='colone3'>NOM</td>
+            <td class='colone3'>{{nom}}</td>
+        </tr>
+         <tr  class='ligne3'>
+            <td class='colone3'>ADRESSE</td>
+            <td class='colone3' style='height: 60px'>{{adresse}}</td>
+        </tr>
+          <tr  class='ligne3'>
+            <td class='colone3'>TELEPHONE</td>
+            <td class='colone3'>{{telephone}}</td>
+        </tr>
+           <tr  class='ligne3'>
+            <td class='colone3'>EMAIL</td>
+            <td class='colone3'>{{email}}</td>
+        </tr>
+        
+      </table>
+      
+      
+       <!------------debut-espace----------------------------------------->     
+      <table >
+      <tr>
+        <td style='height: 15px;width: 700px'>  
+        </td>
+      </tr>
+      </table>
+<!------------fin-espace----------------------------------------->       
+ 
+      
+      
+       <table>
+        
+        <tr  class='ligne3'>
+            <td class='colone3'>SERVICE</td>
+            <td class='colone3'>
+                {% if service=='1'%}
+                Navette aeroportuaire
+                {% elseif service=='2'%}
+                Night Club
+                {% elseif service=='3'%}
+                Excursion  
+                {% elseif service=='4'%}
+                 Personne &acirc;g&eacute;e
+                {% elseif service=='5'%}
+                Mise &agrave; disposition totale
+                {% elseif service=='6'%}
+                Mise &agrave; disposition partielle
+                {% elseif service=='7'%}
+                 Affaire
+                {% else %}
+                Autre
+                {%endif%}
+            </td>
+        </tr>
+         <tr  class='ligne3'>
+            <td class='colone3'>NOMBRE DE PERSONNES</td>
+            <td class='colone3'>{{nbpersonne}}</td>
+        </tr>
+          <tr  class='ligne3'>
+            <td class='colone3'>CHAUFFEUR VIP DROP-OFF</td>
+            <td class='colone3'>
+                {% if chvdo=='1' %}
+                Oui
+                {% else %}
+                Non
+                {%endif%}
+            </td>
+        </tr>
+           
+      </table>
+      
+      
+       <!------------debut-espace----------------------------------------->     
+      <table >
+      <tr>
+        <td style='height: 15px;width: 700px'>  
+        </td>
+      </tr>
+      </table>
+<!------------fin-espace----------------------------------------->       
+ 
+ 
+ 
+ 
+       <table>
+        
+        <tr  class='ligne3'>
+            <td class='colone3'>DATE ET HEURE</td>
+            <td class='colone3'>{{date}}</td>
+        </tr>
+         <tr  class='ligne3'>
+            <td class='colone3' style='height: 60px'>DEPART</td>
+            <td class='colone3'>{{depart}}</td>
+        </tr>
+          <tr  class='ligne3'>
+            <td class='colone3' style='height: 60px' >ARRIVER</td>
+            <td class='colone3'>{{arrivee}}</td>
+        </tr>
+          
+          <tr  class='ligne3'>
+            <td class='colone3'>ALLER ET RETOUR </td>
+            <td class='colone3'>
+                {% if ar=='1' %}
+                Oui
+                {% else%}
+                Non
+                {%endif%}
+            </td>
+        </tr>
+         <tr  class='ligne3'>
+            <td class='colone3'>DISTANCE</td>
+            <td class='colone3'>{{distance}}</td>
+        </tr>
+          <tr  class='ligne3'>
+            <td class='colone3'>ESTIMATION DE LA DUREE</td>
+            <td class='colone3'>{{duree}}</td>
+        </tr>
+           <tr  class='ligne3'>
+            <td class='colone3'>PRIX</td>
+            <td class='colone3'>{{prix}} Euros</td>
+        </tr>
+           
+           
+      </table>
+ 
+      </div>
+       <!------------debut-espace----------------------------------------->     
+      <table >
+      <tr>
+        <td style='height: 15px;width: 700px'>  
+        </td>
+      </tr>
+      </table>
+<!------------fin-espace----------------------------------------->       
+ 
+ 
+ 
+ <table>
+    <tr >
+       <td style='width: 700px; height: 200px;border: groove; border-width: 1px;' >
+        </td>
+    </tr>
+ </table>
+      
+      
+      
+        
+    </div>
+    
+</page>

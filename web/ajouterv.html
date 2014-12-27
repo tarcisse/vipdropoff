@@ -1,0 +1,49 @@
+  <!--RIGHT INFORMATION-->
+                    <div class="col-md-5 col-lg-offset-1 col-md-offset-1 padding-right-none xs-padding-left-none sm-padding-left-none xs-margin-top-30">
+                        <div class="contact_wrapper information_head">
+                            <h3 class="margin-bottom-25 margin-top-none" >AJOUTER UNE NOUVELLE VOITURE</h3>
+                            <div class="form_contact margin-bottom-20">
+                                <div id="result"></div>
+                                <fieldset id="contact_form">
+                                    
+                                    <input type="text" title='marque' id='marque'name="marque" class="form-control margin-bottom-25" placeholder="LA MARQUE  DE VOTRE VOITURE (obligatoire)" />
+                                    <input type="text" title='matricule' id='matricule' name="matricule" class="form-control margin-bottom-25" placeholder="NUMERO MATRICULE DE VOTRE VOITURE(obligatoire)" />
+                                    <input type="text" title='nombre de place' id='nplace' name="email" class="form-control margin-bottom-25" placeholder="NOMBRE DE PLACE SANS COMPTER LE CHAUFFEUR" />
+                                     <select name="climatisation" class="css-dropdowns " id='climatisation' tabindex="1" >
+                                         <option value='M'>votre voiture est-elle munie d' une climatisation ou un chauffage</option>
+                                                    <option value='1'>oui</option>
+                                                    <option value='0'>non</option>
+                                                </select>
+                                              <div style='margin-top: 3vh !important;height: 1px' ></div>
+                                     <select  name="musique" class="css-dropdowns " style='margin-top: 3vh !important;height: 1px' id='musique' tabindex="1" >
+                                         <option value='M'>votre voiture possede t' elle un lecteur de musique?</option>
+                                                    <option value='1'>oui</option>
+                                                    <option value='0'>non</option>
+                                                </select>
+                                     <input type='hidden' value='{{autorisation}}' id='autorisation'>
+                                     
+         <div id='detape4' style='margin-top: 100px !important'>
+            Ajouter une photo de votre voiture<br>
+                                     <div class='file_suppor'>
+<form method='post' action='/uploader?nm={{autorisation}}5&code=5' target='frame5' id='form5'  alt='5' enctype='multipart/form-data' >
+    <input type='file' name='tof' id='file5' class='fich_cach' alt='5' >
+    <img src='web/images/photo2.jpg'  id='img5' class='fich_img' alt='5' alt='5' >
+    <input type='submit' value='charger' id='submit5' name='submit' class='fich_cach'  alt='5' >
+</form>
+<div id='frame-feed5'></div>
+<iframe  name='frame5'  frameborder='0'></iframe>
+</div>
+                                     
+         </div>                                 
+                                                                   
+                                    <input id="bt_enr" type="submit" value="ENREGISTRER" style='margin-top: 25px;'>
+                                 <div id='feed_enr'></div>
+                                       
+                                </fieldset>
+                            </div>
+                        </div>
+                    
+                    
+                    
+                    </div>
+                    <!--RIGHT INFORMATION--> 
